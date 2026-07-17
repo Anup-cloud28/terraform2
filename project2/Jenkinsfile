@@ -25,9 +25,9 @@ pipeline {
         stage('Plan'){
             steps{
                 // Navigate into the checked-out directory and then into the Project-1 subdirectory
-                sh 'cd iac-repo/Project2; terraform init' 
-                sh 'cd iac-repo/Project2; terraform plan -out tfplan'
-                sh 'cd iac-repo/Project2; terraform show -no-color tfplan >> ../tfplan.txt' // Write plan to parent dir for easier access
+                sh 'cd terraform2/project2; terraform init' 
+                sh 'cd terraform2/project2; terraform plan -out tfplan'
+                sh 'cd terraform2/project2; terraform show -no-color tfplan >> ../tfplan.txt' // Write plan to parent dir for easier access
             }
         }
     
@@ -35,7 +35,7 @@ pipeline {
             steps{
                 script {
                     // Read the plan file from the workspace root or the checked out directory (using iac-repo/tfplan.txt)
-                    def plan = readFile 'iac-repo/tfplan.txt'
+                    def plan = readFile 'terraform2/tfplan.txt'
                     
        
                     input(
@@ -59,10 +59,10 @@ pipeline {
                 script{
                     if (params.terraformAction == 'apply'){
                      
-                        sh "cd iac-repo/07-Project-01; terraform apply -input=false tfplan" 
+                        sh "cd terraform2/project2; terraform apply -input=false tfplan" 
                     } else if(params.terraformAction == 'destroy'){
                  
-                        sh "cd iac-repo/07-Project-01; terraform destroy -auto-approve" 
+                        sh "cd terraform2/project2; terraform destroy -auto-approve" 
                     }
                 }
             }
