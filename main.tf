@@ -16,7 +16,7 @@ resource "aws_instance" "TestInstance" {
     }
 
     user_data = file("jenkins-server.sh")
-    key_pair = "Project1"
+    key_name = "Project1"
 }
 
 resource "aws_security_group" "TestSecurityGroup" {
