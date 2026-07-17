@@ -8,11 +8,11 @@ resource "aws_instance" "TestInstance" {
     security_groups = [aws_security_group.TestSecurityGroup.name]
     root_block_device {
         volume_size = 30
-        volume_type = "gp3"
+        volume_type = "gp2"
         delete_on_termination = true
     }
     tags ={
-        Name = "testAk-instance"
+        Name = "Admin-instance"
     }
 
     user_data = file("jenkins-server.sh")
