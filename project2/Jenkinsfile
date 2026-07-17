@@ -15,7 +15,7 @@ pipeline {
         stage('checkout'){
             steps{
                 script {
-                    dir("iac-repo"){ 
+                    dir("terraform2"){ 
                         git branch: 'main',url:'https://github.com/Anup-cloud28/terraform2.git'
                     }
                 }
