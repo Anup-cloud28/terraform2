@@ -13,13 +13,13 @@ resource "aws_internet_gateway" "TestInternetGateway" {
 # public subnet
 resource "aws_subnet" "TestPublicSubnet" {
     vpc_id = aws_vpc.TestVPC.id
-    cidr_block = "10.0.0.0/28"
+    cidr_block = "10.0.0.0/25"
     map_public_ip_on_launch = true
 }
 # private subnet
 resource "aws_subnet" "TestPrivateSubnet" {
     vpc_id = aws_vpc.TestVPC.id
-    cidr_block = "10.0.1.0/28"
+    cidr_block = "10.0.1.0/25"
 }
 
 # public route table
