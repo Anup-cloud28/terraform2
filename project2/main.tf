@@ -5,21 +5,33 @@ provider "aws" {
 # vpc
 resource "aws_vpc" "TestVPC" {
     cidr_block = "10.0.0.0/24"
+    tags = {
+        Name = "testAk-vpc"
+    }
 }
 # internet gateway
 resource "aws_internet_gateway" "TestInternetGateway" {
     vpc_id = aws_vpc.TestVPC.id
+    tags = {
+        Name = "testAk-internet-gateway"
+    }
 }
 # public subnet
 resource "aws_subnet" "TestPublicSubnet" {
     vpc_id = aws_vpc.TestVPC.id
     cidr_block = "10.0.0.0/28"
     map_public_ip_on_launch = true
+    tags = {
+        Name = "testAk-public-subnet"
+    }
 }
 # private subnet
 resource "aws_subnet" "TestPrivateSubnet" {
     vpc_id = aws_vpc.TestVPC.id
     cidr_block = "10.0.0.16/28"
+    tags = {
+        Name = "testAk-private-subnet"
+    }
 }
 
 # public route table
@@ -29,10 +41,16 @@ resource "aws_route_table" "TestPublicRouteTable" {
         cidr_block = "0.0.0.0/0"
         gateway_id = aws_internet_gateway.TestInternetGateway.id
     }
+    tags = {
+        Name = "testAk-public-route-table"
+    }
 }
 # private route table
 resource "aws_route_table" "TestPrivateRouteTable" {
     vpc_id = aws_vpc.TestVPC.id
+    tags = {
+        Name = "testAk-private-route-table"
+    }
 }
 
 #associate public route table with public subnet
