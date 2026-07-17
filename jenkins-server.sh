@@ -8,5 +8,6 @@ echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
     /etc/apt/sources.list.d/jenkins.list > /dev/null
 
 sudo apt-get update
-  sudo apt-get install fontconfig openjdk-21-jre
-  sudo apt-get install jenkins
+  sudo apt-get install fontconfig openjdk-21-jre -y
+  sudo apt-get install jenkins -y
+
