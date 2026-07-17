@@ -11,12 +11,13 @@ resource "aws_instance" "TestInstance" {
         volume_type = "gp2"
         delete_on_termination = true
     }
+    user_data = file("jenkins-server.sh")
+    key_name = "Project1"
+    
     tags ={
         Name = "Admin-instance"
     }
 
-    user_data = file("jenkins-server.sh")
-    key_name = "Project1"
 }
 
 resource "aws_security_group" "TestSecurityGroup" {
